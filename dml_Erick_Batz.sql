@@ -1,3 +1,103 @@
+/*1.mostrar los datos de todas las regiones*/
+SELECT 
+	* 
+FROM 
+	regiones;
+/*2.Obtener los datos de todos los municipios*/
+SELECT 
+	* 
+FROM 
+	municipios;
+	
+/*3.mostrar todos los municipios ordenados por codigo de departamento*/
+SELECT 
+	* 
+FROM 
+	municipios
+ORDER BY cod_depto ASC;
+
+/*4.listar los datos de todos los departamentos que pertenecen a la region con codigo 6*/
+
+SELECT 
+	* 
+FROM 
+	departamentos
+WHERE cod_region = 6;
+
+/*5.seleccionar a los ciudadanos que pertenecen al municipio con codigo 901, los datos a mostrar son DPI,nombre, apellido, direccion
+ y telefono movil
+ importante: concatenar el nombre del ciudadano de tal forma que posea el siguiente formato>: apellido, nombre*/
+ 
+SELECT 
+ 	ciudadanos.dpi,
+	CONCAT(ciudadanos.nombre, " ",ciudadanos.apellido),
+	ciudadanos.direccion,
+	ciudadanos.tel_movil,
+	ciudadanos.cod_muni
+FROM 
+	ciudadanos
+WHERE cod_muni = 901;
+
+/*6.mostrar los datos de los ciudadanos que tiene el apellido perez
+importante: 
+	-tomar en cuenta que el apellido puede o no tener tilde
+	-no importa si el apellido se encuentra al inicio o al final*/
+SELECT 
+	* 
+FROM 
+	ciudadanos
+WHERE apellido LIKE "%Perez%";
+
+/*7.listar a todos los departamentos ordenados por codigo de region*/
+SELECT 
+	*
+FROM 
+	departamentos
+ORDER BY cod_region ASC;
+
+/*8.mostrar los datos de todos los ciudadanos que pertenecen al municipio con codigo 101 ordenar los datos 
+por codigo de municipio y apellido*/
+SELECT 
+	*
+FROM 
+	ciudadanos
+WHERE cod_muni = 101
+ORDER BY cod_muni ASC, apellido ASC;
+
+/*9.obtener todos los municipios de finalizan con la letra Z*/
+SELECT 
+	*
+FROM 
+	municipios
+WHERE nombre_municipio LIKE "%z";
+
+/*10.Mostrar dpi,nombre completo(concatenar nombre y apellido ) y telefono movil de los ciudadanos del minicipio con codigo 
+101, ordenar los datos por apellido de forrma descedente*/
+SELECT 
+    ciudadanos.dpi,
+    CONCAT(ciudadanos.nombre, ' ', ciudadanos.apellido) AS nombre_completo,
+    ciudadanos.tel_movil
+FROM 
+    ciudadanos
+WHERE 
+    cod_muni = 101
+ORDER BY 
+    apellido DESC;
+    
+/*11.Mostrar todos los ciudadanos que poseen nivel academico 3 y pertenecen al municipio 102, ordenar los datos por codigo de 
+municipio y apellido*/
+SELECT 
+	*
+FROM 
+	ciudadanos
+WHERE 
+	cod_nivel_acad = 5 	/*no hay nivel academico 3*/
+	AND
+	cod_muni = 102
+ORDER BY 
+	cod_muni ASC,
+	apellido ASC; 
+
 /*12.Agregar un nuevo ciudadanos, los datos son los siguientes*/
 INSERT INTO ciudadanos (
     dpi, 
